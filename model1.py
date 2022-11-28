@@ -56,8 +56,10 @@ def reward_function(params):
     if not all_wheels_on_track:
         reward *= 0.05
     
-    if abs(my_diff - (heading + steering_angle)) < 6 and speed < 1.5:
+    if abs(my_diff - (heading + steering_angle)) <= 3 and speed < 2:
         reward *= 0.8
+    if abs(my_diff - (heading + steering_angle)) >= 15 and speed > 1.5:
+        reward *= 0.4
     
     # Calculate 3 markers that are at varying distances away from the center line
     marker_1 = 0.1 * track_width
